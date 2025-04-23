@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "postbuild": "sudo cp -r dist/* /var/www/frontend",
     "lint": "eslint .",
     "preview": "vite preview"
   },
