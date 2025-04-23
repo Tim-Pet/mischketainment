@@ -197,6 +197,52 @@ sudo systemctl reload nginx
 sudo rm /etc/nginx/sites-enabled/default
 ```
 
+
+Make App Accessible in the internet:
+Get [Cloudflare account](dash.cloudflare.com) (to not touch router & port forwarding)
+
+install cloudflare tunnel on PI
+```bash
+sudo apt install cloudflared
+```
+on some OS this isn't available. do this then:get .deb file for your OS (in this example ARM64)
+```bash
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
+sudo dpkg -i cloudflared-linux-arm64.deb
+cloudflared --version
+```
+
+login:
+```bash
+cloudflared tunnel login
+```
+create tunnel config:
+```bash
+nano ~/.cloudflared/config.yml
+```
+
+paste there:
+```yaml
+tunnel: mischketainment
+credentials-file: /home/pi/.cloudflared/mischketainment.json
+
+ingress:
+  - hostname: mischketainment.copyandpaste.dev
+    service: http://localhost:80
+  - service: http_status:404
+```
+
+route dns to tunel:
+```bash
+cloudflared tunnel route dns mischketainment mischketainment.copyandpaste.dev
+```
+
+
+Authenticate & create a tunnel
+```bash
+cloudflared tunnel login
+cloudflared tunnel create mischketainment
+```
 ---
 
 ## On Folder Moves
