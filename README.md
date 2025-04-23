@@ -97,6 +97,15 @@ v20.x.x
 
 ### Setup
 
+adjust network url for fetches:
+
+```bash
+const response = await fetch('http://<YOUR_PI_IP>:3111/upload', {
+        method: 'POST',
+        body: formData,
+      });
+```
+
 ```bash
 cd ~/mischketainment/frontend
 npm i
