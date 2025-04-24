@@ -4,13 +4,17 @@ function App() {
   const [files, setFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<string>('');
 
+  useEffect(() => {
+    document.title = 'Mischketainment | Fotouploader';
+  }, []);
+
   const handleUpload = async () => {
     if (files.length === 0) return;
     const formData = new FormData();
     files.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch('http://localhost:3111/upload', {
+      const response = await fetch('/upload', {
         method: 'POST',
         body: formData,
       });
