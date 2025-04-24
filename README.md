@@ -243,6 +243,11 @@ Authenticate & create a tunnel
 cloudflared tunnel login
 cloudflared tunnel create mischketainment
 ```
+
+Run tunnel with
+```bash
+cloudflared tunnel run mischketainment
+```
 ---
 
 ## On Folder Moves
